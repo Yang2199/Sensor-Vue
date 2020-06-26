@@ -6,28 +6,8 @@
       <el-card>
       <el-form ref="updateFormRef"  class="logup_form" :model="updateForm" :rules="rules" label-position="left" label-width="80px">
         <div class="logup_input">
-          <el-row style="height:60px;">
-            <el-col :span="8" :offset="8">
-              <p v-show="!updateForm.sensorName">
-               <el-button type="primary" size="mini" icon="el-icon-edit" style="visibility:hidden"></el-button>
-               设备名称：{{sensor_id.sensorName}}
-               <el-button type="primary" size="mini" icon="el-icon-edit" @click="updateForm.sensorName = !updateForm.sensorName"></el-button>
-              </p>
-             <el-input v-model="sensor_id.sensorName" v-show="updateForm.sensorName" @blur="updateForm.sensorName = !updateForm.sensorName;editUser()"></el-input>
-            </el-col>
-         </el-row>
-          <el-row style="height:60px;">
-            <el-col :span="8" :offset="8">
-              <p v-show="!updateForm.companyName">
-               <el-button type="primary" size="mini" icon="el-icon-edit" style="visibility:hidden"></el-button>
-               出品公司：{{sensor_id.companyName}}
-               <el-button type="primary" size="mini" icon="el-icon-edit" @click="updateForm.companyName = !updateForm.companyName"></el-button>
-              </p>
-             <el-input v-model="sensor_id.companyName" v-show="updateForm.companyName" @blur="updateForm.companyName = !updateForm.companyName;editUser()"></el-input>
-            </el-col>
-         </el-row>
           <el-form-item label="设备名称" >
-            <el-input class="logup_input_box" v-model="updateForm.companyName"></el-input>
+            <el-input class="logup_input_box" v-model="updateForm.sensorName"></el-input>
           </el-form-item>
           <el-form-item label="出品公司" >
           <el-autocomplete
@@ -125,7 +105,7 @@ export default {
   data () {
     return {
       updateForm: {
-        sensor_id: '', ///
+        sensorId: this.$route.params.id,
         sensorName: '',
         sensorType: '其它传感器',
         companyName: '',
@@ -163,7 +143,7 @@ export default {
     this.companies = res.companyNameList
     // 查询传感器信息：
     var deviceId = this.$route.params.id
-    const { data: res2 } = await this.$http.get('SensorDetail', {
+    const { data: res2 } = await this.$http.get('SensorQuery', {
       params: {
         sensorId: deviceId
       }
@@ -172,7 +152,26 @@ export default {
       this.$message.error('获取传感器信息失败。')
       return this.$router.go(-1)
     }
-    this.updateForm = res2.data
+    // 更新数据
+    this.updateForm.sensorName = res2.sensorView.sensorName
+    this.updateForm.sensorType = res2.sensorView.sensorType
+    this.updateForm.companyName = res2.sensorView.companyName
+    this.featureOption = res2.sensorView.sensorFeature.split(',')
+    this.updateForm.outputType = res2.sensorView.outputType
+    this.updateForm.outputMin = res2.sensorView.outputMin
+    this.updateForm.outputMax = res2.sensorView.outputMax
+    this.updateForm.tempMin = res2.sensorView.tempMin
+    this.updateForm.tempMax = res2.sensorView.tempMax
+    this.updateForm.sensorTypeDetail = res2.sensorDetail.sensorTypeDetail
+    this.updateForm.sensorInput = res2.sensorDetail.sensorInput
+    this.updateForm.sensorOutput = res2.sensorDetail.sensorOutput
+    this.updateForm.sensorEnvironment = res2.sensorDetail.sensorEnvironment
+    this.updateForm.sensorRange = res2.sensorDetail.sensorRange
+    this.updateForm.sensorLevel = res2.sensorDetail.sensorLevel
+    this.updateForm.sensorApplication = res2.sensorDetail.sensorApplication
+    this.updateForm.sensorDescription = res2.sensorDetail.sensorDescription
+    this.updateForm.sensorStrength = res2.sensorDetail.sensorStrength
+    this.updateForm.sensorOther = res2.sensorDetail.sensorOther
   },
   methods: {
     updateSensor () {

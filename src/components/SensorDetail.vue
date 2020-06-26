@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="6">
         <!--  <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="editDevice()">编辑</el-button>  -->
-        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="$router.push('/updatesensor')">编辑</el-button>
+        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="editDevice()">编辑</el-button>
         <el-button type="danger" size="small" icon="el-icon-delete" round :disabled="!mine"  @click="deleteConfirm()">删除</el-button>
       </el-col>
     </el-row>
@@ -85,11 +85,10 @@ export default {
   },
   methods: {
     editDevice () {
-      var id = this.$route.params.id
       this.$router.push({
-        name: 'editDevice',
+        name: 'updateSensor',
         params: {
-          id: id
+          id: this.$route.params.id
         }
       })
     },
