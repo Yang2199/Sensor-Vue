@@ -42,11 +42,11 @@
           fixed
           prop='sensorName'
           label='型号'
-          width='120'
+          width='180'
         ></el-table-column>
         <el-table-column prop='sensorType' label='类型' width='160' sortable></el-table-column>
-        <el-table-column sortable prop='companyName' label='出品公司' width='200'></el-table-column>
-        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='200'>
+        <el-table-column sortable prop='companyName' label='出品公司' width='160'></el-table-column>
+        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='160'>
           <template slot-scope="scope">
             {{scope.row.tempMin}} - {{scope.row.tempMax}} ℃
           </template>
@@ -63,7 +63,7 @@
             {{scope.row.outputMin}} - {{scope.row.outputMax}} V
           </template>
         </el-table-column>
-        <el-table-column fixed='right' prop='button' label='操作' width='140'>
+        <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
             <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
@@ -98,7 +98,7 @@ export default {
       // 选项
       typeOption: [{
         value: '',
-        label: '全部'
+        label: '全部种类'
       }, {
         value: '力传感器',
         label: '力传感器'
