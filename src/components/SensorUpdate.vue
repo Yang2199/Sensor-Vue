@@ -162,55 +162,19 @@ export default {
     }
     this.companies = res.companyNameList
     // 查询传感器信息：
-    // var deviceId = this.$route.params.id    //device——id没有读到
-    const { data: res2 } = await this.$http.get('sensor_id')
-    if (res2.code !== 200) {
-      this.$message.error('获取传感器id失败，请检查网络。')
-      return this.$router.go(-1)
-    }
-    this.sensor_id = res2.data ///
-    var deviceId = res2.data ///
-    const { data: res3 } = await this.$http.get('SensorDetail', {
+    var deviceId = this.$route.params.id
+    const { data: res2 } = await this.$http.get('SensorDetail', {
       params: {
         sensorId: deviceId
       }
     })
-    if (res3.code !== 200) {
+    if (res2.code !== 200) {
       this.$message.error('获取传感器信息失败。')
       return this.$router.go(-1)
     }
-    this.updateForm = res3.data
+    this.updateForm = res2.data
   },
   methods: {
-    async editUser () {
-      const { data: res4 } = await this.$http.post('sensor_id', {
-        sensorName: this.sensor_id.sensorName,
-        sensorType: '其它传感器',
-        companyName: this.sensor_id.companyName,
-        sensorFeature: this.sensor_id.sensorFeature,
-        outputType: 2,
-        outputMin: this.sensor_id.outputMin,
-        outputMax: this.sensor_id.outputMax,
-        tempMin: this.sensor_id.tempMin,
-        tempMax: this.sensor_id.tempMax,
-        username: window.sessionStorage.getItem('username'),
-        sensorTypeDetail: this.sensor_id.sensorTypeDetail,
-        sensorInput: this.sensor_id.sensorInput,
-        sensorOutput: this.sensor_id.sensorOutput,
-        sensorEnvironment: this.sensor_id.sensorEnvironment,
-        sensorRange: this.sensor_id.sensorRange,
-        sensorLevel: this.sensor_id.sensorLevel,
-        sensorApplication: this.sensor_id.sensorApplication,
-        sensorDescription: this.sensor_id.sensorDescription,
-        sensorStrength: this.sensor_id.sensorStrength,
-        sensorOther: this.sensor_id.sensorOther
-        // email: this.sensor_id.email,
-        // sensorName: this.sensor_id.sensorName,
-        // description: this.sensor_id.description
-      })
-      if (res4.code !== 200) return this.$message.error('修改失败，请重试。')
-      this.$message.success('传感器信息修改成功。')
-    }, /// edit可以一个一个修改，原先的Add和Update只能一次性全部提交
     updateSensor () {
       // 更新特征
       this.updateForm.sensorFeature = this.featureOption.join(',')

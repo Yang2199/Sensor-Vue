@@ -39,7 +39,7 @@ const routes = [
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
       { path: '/addsensor', component: addsensor },
       { path: '/addgateway', component: addgateway }, ///
-      { path: '/updatesensor', component: UpdateSensor }, ///
+      { path: '/updatesensor/:id', component: UpdateSensor }, ///
       { path: '/updategateway', component: UpdateGateway }, ///
       { path: '/info', component: Info },
       { path: '/solution/:id', name: 'solution', component: Solution },
