@@ -1,14 +1,33 @@
 <template>
     <div>
       <el-row>
-      <el-page-header @back="$router.go(-1)" content="添加传感器"></el-page-header>
+      <el-page-header @back="$router.go(-1)" content="编辑传感器"></el-page-header>
       </el-row>
       <el-card>
       <el-form ref="updateFormRef"  class="logup_form" :model="updateForm" :rules="rules" label-position="left" label-width="80px">
         <div class="logup_input">
+          <el-row style="height:60px;">
+            <el-col :span="8" :offset="8">
+              <p v-show="!updateForm.sensorName">
+               <el-button type="primary" size="mini" icon="el-icon-edit" style="visibility:hidden"></el-button>
+               设备名称：{{sensor_id.sensorName}}
+               <el-button type="primary" size="mini" icon="el-icon-edit" @click="updateForm.sensorName = !updateForm.sensorName"></el-button>
+              </p>
+             <el-input v-model="sensor_id.sensorName" v-show="updateForm.sensorName" @blur="updateForm.sensorName = !updateForm.sensorName;editUser()"></el-input>
+            </el-col>
+         </el-row>
+          <el-row style="height:60px;">
+            <el-col :span="8" :offset="8">
+              <p v-show="!updateForm.companyName">
+               <el-button type="primary" size="mini" icon="el-icon-edit" style="visibility:hidden"></el-button>
+               出品公司：{{sensor_id.companyName}}
+               <el-button type="primary" size="mini" icon="el-icon-edit" @click="updateForm.companyName = !updateForm.companyName"></el-button>
+              </p>
+             <el-input v-model="sensor_id.companyName" v-show="updateForm.companyName" @blur="updateForm.companyName = !updateForm.companyName;editUser()"></el-input>
+            </el-col>
+         </el-row>
           <el-form-item label="设备名称" >
-            <el-input class="logup_input_box" v-model="updateForm.sensorName"></el-input>
-            <el-button type="primary" icon="el-icon-edit"></el-button> <!---->
+            <el-input class="logup_input_box" v-model="updateForm.companyName"></el-input>
           </el-form-item>
           <el-form-item label="出品公司" >
           <el-autocomplete
@@ -16,7 +35,6 @@
             v-model="updateForm.companyName"
             :fetch-suggestions="querySearch"
           ></el-autocomplete>
-          <el-button type="primary" icon="el-icon-edit"></el-button> <!---->
            </el-form-item>
           <el-form-item label="设备类型">
              <el-select v-model="updateForm.sensorType" placeholder="请选择传感器类型">
@@ -32,7 +50,6 @@
           </el-form-item>
           <el-form-item label="具体类型" >
             <el-input class="logup_input_box" v-model="updateForm.sensorTypeDetail"></el-input>
-            <el-button type="primary" icon="el-icon-edit"></el-button> <!---->
           </el-form-item>
           <el-form-item label="输出类型">
              <el-select v-model="updateForm.outputType" placeholder="请选择输出类型">
@@ -95,7 +112,7 @@
           </el-form-item>
         </div>
         <el-form-item>
-          <el-button type="primary" class="login_button" @click="updateDevice">提交</el-button>
+          <el-button type="primary" class="login_button" @click="updateSensor">提交</el-button>
           <el-button class="logup_button" @click="quit">取消</el-button>
         </el-form-item>
       </el-form>
@@ -108,6 +125,7 @@ export default {
   data () {
     return {
       updateForm: {
+        sensor_id: '', ///
         sensorName: '',
         sensorType: '其它传感器',
         companyName: '',
@@ -143,9 +161,57 @@ export default {
       return this.$router.go(-1)
     }
     this.companies = res.companyNameList
+    // 查询传感器信息：
+    // var deviceId = this.$route.params.id    //device——id没有读到
+    const { data: res2 } = await this.$http.get('sensor_id')
+    if (res2.code !== 200) {
+      this.$message.error('获取传感器id失败，请检查网络。')
+      return this.$router.go(-1)
+    }
+    this.sensor_id = res2.data ///
+    var deviceId = res2.data ///
+    const { data: res3 } = await this.$http.get('SensorDetail', {
+      params: {
+        sensorId: deviceId
+      }
+    })
+    if (res3.code !== 200) {
+      this.$message.error('获取传感器信息失败。')
+      return this.$router.go(-1)
+    }
+    this.updateForm = res3.data
   },
   methods: {
-    updateDevice () {
+    async editUser () {
+      const { data: res4 } = await this.$http.post('sensor_id', {
+        sensorName: this.sensor_id.sensorName,
+        sensorType: '其它传感器',
+        companyName: this.sensor_id.companyName,
+        sensorFeature: this.sensor_id.sensorFeature,
+        outputType: 2,
+        outputMin: this.sensor_id.outputMin,
+        outputMax: this.sensor_id.outputMax,
+        tempMin: this.sensor_id.tempMin,
+        tempMax: this.sensor_id.tempMax,
+        username: window.sessionStorage.getItem('username'),
+        sensorTypeDetail: this.sensor_id.sensorTypeDetail,
+        sensorInput: this.sensor_id.sensorInput,
+        sensorOutput: this.sensor_id.sensorOutput,
+        sensorEnvironment: this.sensor_id.sensorEnvironment,
+        sensorRange: this.sensor_id.sensorRange,
+        sensorLevel: this.sensor_id.sensorLevel,
+        sensorApplication: this.sensor_id.sensorApplication,
+        sensorDescription: this.sensor_id.sensorDescription,
+        sensorStrength: this.sensor_id.sensorStrength,
+        sensorOther: this.sensor_id.sensorOther
+        // email: this.sensor_id.email,
+        // sensorName: this.sensor_id.sensorName,
+        // description: this.sensor_id.description
+      })
+      if (res4.code !== 200) return this.$message.error('修改失败，请重试。')
+      this.$message.success('传感器信息修改成功。')
+    }, /// edit可以一个一个修改，原先的Add和Update只能一次性全部提交
+    updateSensor () {
       // 更新特征
       this.updateForm.sensorFeature = this.featureOption.join(',')
       // 上传
@@ -153,8 +219,8 @@ export default {
         if (!valid) return
         const { data: res } = await this.$http.post('SensorUpdate', this.updateForm)
         console.log(res)
-        if (res.code !== 200) return this.$message.error('上传失败')
-        this.$message.success('上传成功')
+        if (res.code !== 200) return this.$message.error('修改失败')
+        this.$message.success('修改成功')
         this.$router.push({
           name: 'sensor',
           params: {

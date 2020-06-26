@@ -3,10 +3,6 @@
     <div class="logup_box">
       <h1>注册用户</h1>
       <el-form ref="logupFormRef"  class="logup_form" :model="logupForm" :rules="rules" label-position="left" label-width="80px">
-        <el-radio-group v-model="logupForm.role">
-          <el-radio-button :label="false">普通用户</el-radio-button>
-          <el-radio-button :label="true">企业用户</el-radio-button>
-        </el-radio-group>
         <div class="logup_input">
           <el-form-item label="账  号"  prop="username" >
             <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.username"></el-input>
@@ -23,11 +19,8 @@
           <el-form-item label="邮箱"  prop="email" >
             <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="公司名称" prop="companyName" v-if="logupForm.role">
-             <el-input  class="logup_input_box" v-model="logupForm.companyName"></el-input>
-          </el-form-item>
-          <el-form-item label="公司描述" v-if="logupForm.role">
-             <el-input type="textarea" v-model="logupForm.description"></el-input>
+          <el-form-item label="详情"  prop="description" >
+            <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.description"></el-input>
           </el-form-item>
         </div>
         <el-form-item>
@@ -53,13 +46,11 @@ export default {
     }
     return {
       logupForm: {
-        role: false,
         username: '',
         password: '',
-        checkPass: '',
+        // checkPass: '',
         mobilePhone: '', ///
         email: '', ///
-        companyName: '',
         description: ''
       },
       rules: {
@@ -109,7 +100,7 @@ export default {
 .logup_container{
   background-color: #ffffff;
   height:100%;
-  background-image: url('https://www.itdaan.com/go/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDg0OS8yMDE2MTEvNDg0OS0yMDE2MTEyMDEzNTMzNTcxNy01NTU3MzUyMTQuanBn');
+  background-image: url('http://img1.imgtn.bdimg.com/it/u=840128231,2174898797&fm=214&gp=0.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -118,7 +109,7 @@ export default {
   width:40%;
   height:100%;
   padding:0 10% 0 10%;
-  background-color:rgba(255, 255, 255, 0.4);
+  background-color:rgba(255, 255, 255, 0.5);
   position:absolute;
   left:50%;
   transform: translate(-50%, 0);

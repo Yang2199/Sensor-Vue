@@ -5,8 +5,10 @@ import Logup from '../components/Logup.vue'
 import Findkey from '../components/Findkey.vue' ///
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
-import AddDevice from '../components/SensorAdd.vue'
-import UpdateDevice from '../components/SensorUpdate.vue' ///
+import addsensor from '../components/SensorAdd.vue'
+import addgateway from '../components/GatewayAdd.vue' ///
+import UpdateSensor from '../components/SensorUpdate.vue' ///
+import UpdateGateway from '../components/GatewayUpdate.vue' ///
 import Info from '../components/Info.vue'
 import SensorView from '../components/SensorView.vue'
 import SensorDetail from '../components/SensorDetail.vue'
@@ -35,8 +37,10 @@ const routes = [
       { path: '/list/gateway', component: GatewayView }, // 网关列表
       { path: '/gateway/:id', name: 'gateway', component: GatewayDetail }, // 网关详细信息
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
-      { path: '/addsensor', component: AddDevice },
-      { path: '/updatesensor', component: UpdateDevice }, ///
+      { path: '/addsensor', component: addsensor },
+      { path: '/addgateway', component: addgateway }, ///
+      { path: '/updatesensor', component: UpdateSensor }, ///
+      { path: '/updategateway', component: UpdateGateway }, ///
       { path: '/info', component: Info },
       { path: '/solution/:id', name: 'solution', component: Solution },
       { path: '/solutionAll/:id', name: 'solutionAll', component: SolutionAll },

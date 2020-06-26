@@ -5,7 +5,7 @@
         <el-page-header @back="$router.go(-1)" content="网关"></el-page-header>
       </el-col>
       <el-col :span="6">
-        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="editDevice()">编辑</el-button>
+        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="$router.push('/updategateway')">编辑</el-button>
         <el-button type="danger" size="small" icon="el-icon-delete" round :disabled="!mine"  @click="deleteConfirm()">删除</el-button>
       </el-col>
     </el-row>

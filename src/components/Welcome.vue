@@ -39,10 +39,13 @@ export default {
 .el-card {
   margin-bottom: 25px;
   background-color: #ffd900;
+  /*
+  background-color: #ffd900;
   height:100%;
   background-image: url('https://imgsa.baidu.com/forum/w%3D580/sign=6028757e37f33a879e6d0012f65d1018/41655982b2b7d0a2b9e5f2d3c6ef76094b369a26.jpg');
   background-size: cover;
   background-position: center;
+  */
   /* background-attachment:fixed; */
 }
 

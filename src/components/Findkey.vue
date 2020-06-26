@@ -72,7 +72,7 @@ export default {
 .findkey_container{
   background-color: #ffffff;
   height:100%;
-  background-image: url('https://www.itdaan.com/go/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDg0OS8yMDE2MTEvNDg0OS0yMDE2MTEyMDEzNTMzNTcxNy01NTU3MzUyMTQuanBn');
+  background-image: url('http://img1.imgtn.bdimg.com/it/u=840128231,2174898797&fm=214&gp=0.jpg');
   background-size: cover;
   background-position: center;
 }

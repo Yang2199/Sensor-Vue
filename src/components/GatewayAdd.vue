@@ -1,13 +1,13 @@
 <template>
     <div>
       <el-row>
-      <el-page-header @back="$router.go(-1)" content="添加传感器"></el-page-header>
+      <el-page-header @back="$router.go(-1)" content="添加网关"></el-page-header>
       </el-row>
       <el-card>
       <el-form ref="addFormRef"  class="logup_form" :model="addForm" :rules="rules" label-position="left" label-width="80px">
         <div class="logup_input">
           <el-form-item label="设备名称" >
-            <el-input class="logup_input_box" v-model="addForm.sensorName"></el-input>
+            <el-input class="logup_input_box" v-model="addForm.gatewayName"></el-input>
           </el-form-item>
           <el-form-item label="出品公司" >
           <el-autocomplete
@@ -17,19 +17,19 @@
           ></el-autocomplete>
            </el-form-item>
           <el-form-item label="设备类型">
-             <el-select v-model="addForm.sensorType" placeholder="请选择传感器类型">
-               <el-option value="力传感器"></el-option>
-               <el-option value="光传感器"></el-option>
-               <el-option value="热传感器"></el-option>
-               <el-option value="气密传感器"></el-option>
-               <el-option value="位置传感器"></el-option>
-               <el-option value="电磁传感器"></el-option>
-               <el-option value="扭矩传感器"></el-option>
-               <el-option value="其它传感器"></el-option>
+             <el-select v-model="addForm.gatewayType" placeholder="请选择网关类型">
+               <el-option value="力网关"></el-option>
+               <el-option value="光网关"></el-option>
+               <el-option value="热网关"></el-option>
+               <el-option value="气密网关"></el-option>
+               <el-option value="位置网关"></el-option>
+               <el-option value="电磁网关"></el-option>
+               <el-option value="扭矩网关"></el-option>
+               <el-option value="其它网关"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="具体类型" >
-            <el-input class="logup_input_box" v-model="addForm.sensorTypeDetail"></el-input>
+            <el-input class="logup_input_box" v-model="addForm.gatewayTypeDetail"></el-input>
           </el-form-item>
           <el-form-item label="输出类型">
              <el-select v-model="addForm.outputType" placeholder="请选择输出类型">
@@ -45,10 +45,10 @@
                V
           </el-form-item>
           <el-form-item label="输入描述">
-             <el-input type="textarea" v-model="addForm.sensorInput"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayInput"></el-input>
           </el-form-item>
           <el-form-item label="输出描述">
-             <el-input type="textarea" v-model="addForm.sensorOutput"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayOutput"></el-input>
           </el-form-item>
           <el-form-item label="工作温度" :inline="true">
                <el-input  class="small_input_box" v-model="addForm.tempMin"></el-input>
@@ -57,22 +57,22 @@
                ℃
           </el-form-item>
           <el-form-item label="测量范围">
-             <el-input type="textarea" v-model="addForm.sensorRange"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayRange"></el-input>
           </el-form-item>
           <el-form-item label="工作环境">
-             <el-input type="textarea" v-model="addForm.sensorEnvironment"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayEnvironment"></el-input>
           </el-form-item>
           <el-form-item label="防水等级">
-             <el-input type="textarea" v-model="addForm.sensorLevel"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayLevel"></el-input>
           </el-form-item>
           <el-form-item label="产品描述">
-             <el-input type="textarea" v-model="addForm.sensorDescription"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayDescription"></el-input>
           </el-form-item>
           <el-form-item label="应用场景">
-             <el-input type="textarea" v-model="addForm.sensorApplication"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayApplication"></el-input>
           </el-form-item>
           <el-form-item label="产品优势">
-             <el-input type="textarea" v-model="addForm.sensorStrength"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayStrength"></el-input>
              <el-checkbox-group v-model="featureOption">
              <el-checkbox label="耐高温"></el-checkbox>
              <el-checkbox label="耐低温"></el-checkbox>
@@ -88,11 +88,11 @@
           </el-checkbox-group>
           </el-form-item>
           <el-form-item label="其它">
-             <el-input type="textarea" v-model="addForm.sensorOther"></el-input>
+             <el-input type="textarea" v-model="addForm.gatewayOther"></el-input>
           </el-form-item>
         </div>
         <el-form-item>
-          <el-button type="primary" class="login_button" @click="addSensor">提交</el-button>
+          <el-button type="primary" class="login_button" @click="addGateway">提交</el-button>
           <el-button class="logup_button" @click="quit">取消</el-button>
         </el-form-item>
       </el-form>
@@ -105,26 +105,26 @@ export default {
   data () {
     return {
       addForm: {
-        sensorName: '',
-        sensorType: '其它传感器',
+        gatewayName: '',
+        gatewayType: '其它网关',
         companyName: '',
-        sensorFeature: '',
+        gatewayFeature: '',
         outputType: 2,
         outputMin: '',
         outputMax: '',
         tempMin: '',
         tempMax: '',
         username: window.sessionStorage.getItem('username'),
-        sensorTypeDetail: '',
-        sensorInput: '',
-        sensorOutput: '',
-        sensorEnvironment: '',
-        sensorRange: '',
-        sensorLevel: '',
-        sensorApplication: '',
-        sensorDescription: '',
-        sensorStrength: '',
-        sensorOther: ''
+        gatewayTypeDetail: '',
+        gatewayInput: '',
+        gatewayOutput: '',
+        gatewayEnvironment: '',
+        gatewayRange: '',
+        gatewayLevel: '',
+        gatewayApplication: '',
+        gatewayDescription: '',
+        gatewayStrength: '',
+        gatewayOther: ''
       },
       featureOption: [],
       rules: {
@@ -142,20 +142,20 @@ export default {
     this.companies = res.companyNameList
   },
   methods: {
-    addSensor () {
+    addGateway () {
       // 更新特征
-      this.addForm.sensorFeature = this.featureOption.join(',')
+      this.addForm.gatewayFeature = this.featureOption.join(',')
       // 上传
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('SensorAdd', this.addForm)
+        const { data: res } = await this.$http.post('GatewayAdd', this.addForm)
         console.log(res)
         if (res.code !== 200) return this.$message.error('上传失败')
         this.$message.success('上传成功')
         this.$router.push({
-          name: 'sensor',
+          name: 'gateway',
           params: {
-            id: res.sensorId
+            id: res.gatewayId
           }
         })
       })
