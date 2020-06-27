@@ -1,7 +1,7 @@
 <template>
   <div class="findkey_container">
     <div class="findkey_box">
-      <h1>找回密码</h1>
+      <h1>修改密码</h1>
       <el-form ref="findkeyFormRef"  class="findkey_form" :model="findkeyForm" :rules="rules" label-position="left" label-width="80px">
         <div class="findkey_input">
           <el-form-item label="账  号"  prop="username" >
@@ -10,12 +10,18 @@
           <el-form-item label="手机号"  prop="mobilePhone" >
             <el-input class="findkey_input_box" prefix-icon="el-icon-user" v-model="findkeyForm.mobilePhone"></el-input>
           </el-form-item>
-          <el-form-item label="邮箱"  prop="email" >
+          <el-form-item label="邮 箱"  prop="email" >
             <el-input class="findkey_input_box" prefix-icon="el-icon-user" v-model="findkeyForm.email"></el-input>
+          </el-form-item>
+          <el-form-item label="新密码" prop="password">
+            <el-input class="findkey_input_box" type="password" prefix-icon="el-icon-lock" v-model="findkeyForm.password"></el-input>
+          </el-form-item>
+          <el-form-item label="再次输入" prop="checkPass">
+             <el-input  class="findkey_input_box" type="password" prefix-icon="el-icon-lock" v-model="findkeyForm.checkPass"></el-input>
           </el-form-item>
         </div>
         <el-form-item>
-          <el-button type="primary" class="login_button" @click="findkey">找回密码</el-button>
+          <el-button type="primary" class="login_button" @click="findkey">修改密码</el-button>
           <el-button class="findkey_button" @click="quit">返回</el-button>
         </el-form-item>
       </el-form>
@@ -26,11 +32,22 @@
 <script>
 export default {
   data () {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.findkeyForm.password) {
+        callback(new Error('两次输入密码不一致'))
+      } else {
+        callback()
+      }
+    }
     return {
       findkeyForm: {
         username: '',
         mobilePhone: '', ///
-        email: '' ///
+        email: '', ///
+        password: '', ///
+        checkPass: '' ///
       },
       rules: {
         username: [
@@ -44,6 +61,13 @@ export default {
         email: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
           { min: 8, max: 25, message: '邮箱', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 8, max: 16, message: '长度在 8 到 16 个字符，且首字符只能为字母', trigger: 'blur' }
+        ],
+        checkPass: [
+          { validator: validatePass, trigger: 'blur' }
         ]
       }
     }
@@ -57,7 +81,6 @@ export default {
         if (res.code !== 200) return this.$message.error(res.message)
         this.$message.success(res.message)
         window.sessionStorage.setItem('username', res.username)
-        window.sessionStorage.setItem('usertype', res.usertype)
         this.$router.push('/home')
       })
     },

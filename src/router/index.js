@@ -11,12 +11,12 @@ import UpdateSensor from '../components/SensorUpdate.vue' ///
 import UpdateGateway from '../components/GatewayUpdate.vue' ///
 import Info from '../components/Info.vue'
 import SensorView from '../components/SensorView.vue'
+import GatewayView from '../components/GatewayView.vue'
 import SensorDetail from '../components/SensorDetail.vue'
+import GatewayDetail from '../components/GatewayDetail.vue'
 import CompanyDetail from '../components/Company.vue'
 import Solution from '../components/Solution.vue'
 import SolutionAll from '../components/SolutionAll.vue'
-import GatewayView from '../components/GatewayView.vue'
-import GatewayDetail from '../components/GatewayDetail.vue'
 import Search from '../components/Search.vue'
 
 Vue.use(VueRouter)
@@ -33,14 +33,14 @@ const routes = [
     children: [
       { path: '/welcome', component: Welcome },
       { path: '/list/sensor', component: SensorView }, // 传感器列表
-      { path: '/sensor/:id', name: 'sensor', component: SensorDetail }, // 传感器详细信息
       { path: '/list/gateway', component: GatewayView }, // 网关列表
+      { path: '/sensor/:id', name: 'sensor', component: SensorDetail }, // 传感器详细信息
       { path: '/gateway/:id', name: 'gateway', component: GatewayDetail }, // 网关详细信息
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
       { path: '/addsensor', component: addsensor },
       { path: '/addgateway', component: addgateway }, ///
       { path: '/updatesensor/:id', name: 'updateSensor', component: UpdateSensor }, ///
-      { path: '/updategateway', component: UpdateGateway }, ///
+      { path: '/updategateway/:id', name: 'updateGateway', component: UpdateGateway }, ///
       { path: '/info', component: Info },
       { path: '/solution/:id', name: 'solution', component: Solution },
       { path: '/solutionAll/:id', name: 'solutionAll', component: SolutionAll },
@@ -56,7 +56,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next() // next 即放行
   if (to.path === '/logup') return next() // next 即放行
-  if (to.path === '/findkey') return next() // next 即放行??  ///
+  if (to.path === '/findkey') return next() // next 即放行  ///
   const tokenStr = window.sessionStorage.getItem('username')
   if ((!tokenStr)) return next('login')
   next()

@@ -5,7 +5,7 @@
         <el-page-header @back="$router.go(-1)" content="网关"></el-page-header>
       </el-col>
       <el-col :span="6">
-        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="$router.push('/updategateway')">编辑</el-button>
+        <el-button type="primary" size="small" icon="el-icon-edit" round :disabled="!mine" @click="editDevice()">编辑</el-button>
         <el-button type="danger" size="small" icon="el-icon-delete" round :disabled="!mine"  @click="deleteConfirm()">删除</el-button>
       </el-col>
     </el-row>
@@ -58,7 +58,7 @@ export default {
     }
   },
   async created () {
-    this.$emit('flushMenu', '/list/sensor')
+    this.$emit('flushMenu', '/list/gateway')
     // 远端查询数据
     var deviceId = this.$route.params.id
     const { data: res } = await this.$http.get('queryGatewayDetail', {
@@ -67,7 +67,7 @@ export default {
       }
     })
     if (res.code !== 200) {
-      this.$message.error('获取传感器信息失败。')
+      this.$message.error('获取网关信息失败。')
       return this.$router.go(-1)
     }
     this.device = res.data
@@ -81,11 +81,10 @@ export default {
   },
   methods: {
     editDevice () {
-      var id = this.$route.params.id
       this.$router.push({
-        name: 'editDevice',
+        name: 'updateGateway',
         params: {
-          id: id
+          id: this.$route.params.id
         }
       })
     },
@@ -104,7 +103,7 @@ export default {
       const { data: res } = await this.$http.post('GatewayRemove', {
         username: window.sessionStorage.getItem('username'),
         password: passConfirm,
-        sensorId: this.$route.params.id
+        gatewayId: this.$route.params.id
       })
       if (res.code !== 200) return this.$message.error('删除失败，请重试。')
       this.$message.success('设备删除成功')
@@ -118,8 +117,14 @@ export default {
         }
       })
     },
-    matchSensor () {
-      this.$router.push('/solution')
+    matchGateway () {
+      this.$router.push({
+        name: 'solution',
+        params: {
+          gatewayId: this.$route.params.id
+          //this.$router.push('/solution')
+        }
+      })
     }
   }
 }

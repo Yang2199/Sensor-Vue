@@ -104,6 +104,12 @@ export default {
   },
   // 监听数据变化，查询数据
   watch: {
+    'queryInfo.type': {
+      handler (val, oldVal) {
+        this.queryInfo.pageNum = 1
+        this.getList()
+      }
+    },
     featureOption: {
       handler (val, oldVal) {
         this.queryInfo.pageNum = 1

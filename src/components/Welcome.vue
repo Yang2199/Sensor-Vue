@@ -38,7 +38,7 @@ export default {
 
 .el-card {
   margin-bottom: 25px;
-  background-color: #ffd900;
+  background-color: #ffffff;
   /*
   background-color: #ffd900;
   height:100%;

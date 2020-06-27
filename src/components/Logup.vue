@@ -16,10 +16,10 @@
           <el-form-item label="手机号"  prop="mobilePhone" >
             <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.mobilePhone"></el-input>
           </el-form-item>
-          <el-form-item label="邮箱"  prop="email" >
+          <el-form-item label="邮 箱"  prop="email" >
             <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="详情"  prop="description" >
+          <el-form-item label="描述详情"  prop="description" >
             <el-input class="logup_input_box" prefix-icon="el-icon-user" v-model="logupForm.description"></el-input>
           </el-form-item>
         </div>
@@ -85,7 +85,6 @@ export default {
         if (res.code !== 200) return this.$message.error(res.message)
         this.$message.success(res.message)
         window.sessionStorage.setItem('username', res.username)
-        window.sessionStorage.setItem('usertype', res.usertype)
         this.$router.push('/home')
       })
     },

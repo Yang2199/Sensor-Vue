@@ -44,8 +44,7 @@
             <el-input v-model="myinfo.description" v-show="showEdit.description" @blur="showEdit.description = !showEdit.description;editUser()"></el-input>
           </el-col>
         </el-row>
-        <p>.</p>
-        <p>.</p>
+        <p></p>
       </div>
     </el-card>
 </div>

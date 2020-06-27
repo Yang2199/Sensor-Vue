@@ -57,7 +57,7 @@
     <el-container>
       <el-header>
         <!--    <el-button type="warning" icon="el-icon-search" circle></el-button>    有点丑-->
-        <input type="text" autocomplete="off" placeholder="快捷搜索" class="el-input__inner" id="input-inner" v-model="searchValue" @keyup.enter="enterSearch">
+        <input type="text" autocomplete="off" placeholder=" 快捷搜索" class="el-input__inner" id="input-inner" v-model="searchValue" @keyup.enter="enterSearch">
         <el-button @click="logout">退出</el-button>
     </el-header>
       <el-main>
@@ -72,7 +72,6 @@ export default {
   data () {
     return {
       username: '',
-      usertype: '',
       searchValue: '',
       activePath: '/welcome',
       isSolution: false
@@ -80,7 +79,6 @@ export default {
   },
   created () {
     this.username = window.sessionStorage.getItem('username')
-    this.usertype = window.sessionStorage.getItem('usertype')
     // this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
