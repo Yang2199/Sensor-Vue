@@ -6,6 +6,8 @@ import Changekey from '../components/Changekey.vue' ///
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
 import addsensor from '../components/SensorAdd.vue'
+import analysissensor from '../components/SensorAnalysis.vue' ///
+import analysisgateway from '../components/GatewayAnalysis.vue' ///
 import addgateway from '../components/GatewayAdd.vue' ///
 import UpdateSensor from '../components/SensorUpdate.vue' ///
 import UpdateGateway from '../components/GatewayUpdate.vue' ///
@@ -39,6 +41,8 @@ const routes = [
       { path: '/sensor/:id', name: 'sensor', component: SensorDetail }, // 传感器详细信息
       { path: '/gateway/:id', name: 'gateway', component: GatewayDetail }, // 网关详细信息
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
+      { path: '/analysissensor', component: analysissensor }, ///
+      { path: '/analysisgateway', component: analysisgateway }, ///
       { path: '/addsensor', component: addsensor },
       { path: '/addgateway', component: addgateway }, ///
       { path: '/updatesensor/:id', name: 'updateSensor', component: UpdateSensor }, ///

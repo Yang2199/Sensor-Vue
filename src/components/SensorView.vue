@@ -6,6 +6,7 @@
       </el-col>
       <el-col :span="4">
         <el-button type="primary" size="small" icon="el-icon-circle-plus" round  @click="$router.push('/addsensor')">添加</el-button>
+        <el-button type="primary" size="small" icon="el-icon-s-opportunity" round  @click="$router.push('/analysissensor')">分析</el-button>
       </el-col>
     </el-row>
     <el-card>
