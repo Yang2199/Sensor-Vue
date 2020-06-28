@@ -6,43 +6,44 @@
       </el-col>
     </el-row>
     <el-card>
-      <el-row type="flex" align="middle" style="height:60px;">
+      <!-- <el-row type="flex" align="middle" style="height:60px;">
         <el-col :span="6" style="font-weight:bold;">
-          传感器：{{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
+          {{gatewayInfo.gatewayName}}（{{gatewayInfo.gatewayType}}）
         </el-col>
         <el-col :span="4" style="text-align:left;font-weight:bold;">
-           {{sensorInfo.companyName}}
+           {{gatewayInfo.companyName}}
         </el-col>
-      </el-row>
+      </el-row> -->
       <!--表格显示-->
       <el-table :data='tableData' style='width: 100%' height='458' stripe>
         <el-table-column sortable
           fixed
-          prop='gatewayName'
+          prop='sensorName'
           label='型号'
-          width='250'
+          width='180'
         ></el-table-column>
-        <el-table-column sortable prop='companyName' label='出品公司' width='200'></el-table-column>
-        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='180'>
+        <el-table-column prop='sensorType' label='类型' width='160' sortable></el-table-column>
+        <el-table-column sortable prop='companyName' label='出品公司' width='160'></el-table-column>
+        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='160'>
           <template slot-scope="scope">
             {{scope.row.tempMin}} - {{scope.row.tempMax}} ℃
           </template>
         </el-table-column>
-        <el-table-column sortable prop='inputType' label='输入类型' width='220'>
+        <el-table-column sortable prop='outputType' label='输出类型' width='200'>
           <template  slot-scope="scope">
-            <div v-if="scope.row.inputType === 2">模拟信号，数字信号</div>
-            <div v-else-if="scope.row.inputType === 1">数字信号</div>
-            <div v-else-if="scope.row.inputType === 0">模拟信号</div>
+            <div v-if="scope.row.outputType === 2">模拟信号，数字信号</div>
+            <div v-else-if="scope.row.outputType === 1">数字信号</div>
+            <div v-else-if="scope.row.outputType === 0">模拟信号</div>
           </template>
         </el-table-column>
-        <el-table-column sortable prop='inputMin,inputMax' label='输入范围' width='200'>
+        <el-table-column sortable prop='outputMin,outputMax' label='输出范围' width='200'>
           <template slot-scope="scope">
-            {{scope.row.inputMin}} - {{scope.row.inputMax}} V
+            {{scope.row.outputMin}} - {{scope.row.outputMax}} V
           </template>
         </el-table-column>
-        <el-table-column fixed='right' prop='button' label='操作' width='140'>
+        <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
-            <el-button type="primary" @click="getDevice(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>
+            <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
             <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
           </template>
         </el-table-column>
@@ -64,13 +65,13 @@ export default {
     return {
       // 查询信息
       queryInfo: {
-        sensorId: this.$route.params.id,
+        gatewayId: this.$route.params.id,
         total: 0, // 条目总数
         pageNum: 1, // 当前页
         pageSize: 7 // 每页条目数
       },
       // 数据
-      sensorInfo: {},
+      gatewayInfo: {},
       tableData: [],
       // 选项
       typeOption: [{
@@ -91,26 +92,26 @@ export default {
     }
   },
   created () {
-    this.getSensor()
+    this.getGateway()
     this.getList()
     this.$emit('flushMenu', '/solution')
   },
   methods: {
-    async getSensor () {
-      const { data: res } = await this.$http.get('SensorDetail', {
+    async getGateway () {
+      const { data: res } = await this.$http.get('GatewayDetail', {
         params: {
-          sensorId: this.$route.params.id
+          gatewayId: this.$route.params.id
         }
       })
       if (res.code !== 200) {
         this.$message.error('获取传感器信息失败。')
         return this.$router.go(-1)
       }
-      this.sensorInfo = res.data
+      this.gatewayInfo = res.data
     },
     // 向后端查询数据
     async getList () {
-      const { data: res } = await this.$http.get('sensorAllMatch', {
+      const { data: res } = await this.$http.get('gatewayAllMatch', {
         params: this.queryInfo
       })
       if (res.code === 404) {
