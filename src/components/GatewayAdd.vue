@@ -79,6 +79,13 @@
 <script>
 export default {
   data () {
+    var validatePass = (rule, value, callback) => {
+      if (value < this.addForm.inputMin) {
+        callback(new Error('Max不小于Min，请重新输入'))
+      } else {
+        callback()
+      }
+    }
     return {
       addForm: {
         gatewayName: '',
@@ -101,6 +108,9 @@ export default {
       },
       featureOption: [],
       rules: {
+        inputMax: [
+          { validator: validatePass, trigger: 'blur' }
+        ]
       },
       companies: []
     }

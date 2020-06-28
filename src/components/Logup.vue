@@ -99,7 +99,7 @@ export default {
 .logup_container{
   background-color: #ffffff;
   height:100%;
-  background-image: url('http://img1.imgtn.bdimg.com/it/u=840128231,2174898797&fm=214&gp=0.jpg');
+  background-image: url('http://youimg1.c-ctrip.com/target/fd/tg/g3/M07/27/3A/CggYG1YdXy2AITGyABB_-p7zf-Y917.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -118,11 +118,13 @@ export default {
     text-align:left;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-left: 135px;
     font-size:30px;
     font-weight:900;
 }
 
 .logup_input_box{
     width: 300px;
+    text-align: center;
 }
 </style>

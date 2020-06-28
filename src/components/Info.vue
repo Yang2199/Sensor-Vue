@@ -5,7 +5,7 @@
         <el-page-header @back="$router.push('/welcome')" content="用户"></el-page-header>
       </el-col>
       <el-col :span="4">
-        <el-button type="primary" size="small" icon="el-icon-edit" round  @click="editPassword">修改密码</el-button>
+        <el-button type="primary" size="small" icon="el-icon-edit" round  @click="$router.push('/changekey')">修改密码</el-button>
         <el-button type="danger" size="small" icon="el-icon-delete" round  @click="deleteConfirm">注销账户</el-button>
       </el-col>
     </el-row>

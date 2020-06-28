@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Logup from '../components/Logup.vue'
-import Findkey from '../components/Findkey.vue' ///
+import Changekey from '../components/Changekey.vue' ///
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
 import addsensor from '../components/SensorAdd.vue'
@@ -12,6 +12,7 @@ import UpdateGateway from '../components/GatewayUpdate.vue' ///
 import Info from '../components/Info.vue'
 import SensorView from '../components/SensorView.vue'
 import GatewayView from '../components/GatewayView.vue'
+import DataCollectorView from '../components/DataCollectorView.vue' ///
 import SensorDetail from '../components/SensorDetail.vue'
 import GatewayDetail from '../components/GatewayDetail.vue'
 import CompanyDetail from '../components/Company.vue'
@@ -25,7 +26,7 @@ const routes = [
   { path: '/', redirect: '/home' },
   { path: '/login', component: Login },
   { path: '/logup', component: Logup },
-  { path: '/findkey', component: Findkey }, ///
+  { path: '/changekey', component: Changekey }, ///
   {
     path: '/home',
     component: Home,
@@ -34,6 +35,7 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/list/sensor', component: SensorView }, // 传感器列表
       { path: '/list/gateway', component: GatewayView }, // 网关列表
+      { path: '/list/datacollector', component: DataCollectorView }, ///
       { path: '/sensor/:id', name: 'sensor', component: SensorDetail }, // 传感器详细信息
       { path: '/gateway/:id', name: 'gateway', component: GatewayDetail }, // 网关详细信息
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
@@ -56,7 +58,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next() // next 即放行
   if (to.path === '/logup') return next() // next 即放行
-  if (to.path === '/findkey') return next() // next 即放行  ///
+  if (to.path === '/changekey') return next() // next 即放行  ///
   const tokenStr = window.sessionStorage.getItem('username')
   if ((!tokenStr)) return next('login')
   next()

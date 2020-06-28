@@ -32,7 +32,7 @@
             </el-menu-item-group>
             <el-menu-item-group>
               <span slot="title">数据采集器</span>
-              <el-menu-item index="/list/type/20" @click="saveNavState('/list/cac')">数据采集器</el-menu-item>
+              <el-menu-item index="/list/datacollector" @click="saveNavState('/list/datacollector')">数据采集器</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item index="/solution" :disabled="!isSolution">
@@ -119,7 +119,7 @@ export default {
   display: flex;
   padding-left:0;
   justify-content: space-between;
-  background-color: #ffdd00;
+  background-color: #ffff99;
   color: white;
   font-size: 25px;
   display: flex;
@@ -131,7 +131,7 @@ export default {
   height:100%;
   margin-right: 20px;
   color:white;
-  background-color: #ffdd00;
+  background-color: #ffff99;
 }
 
 .el-aside {

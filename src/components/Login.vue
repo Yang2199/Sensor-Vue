@@ -12,7 +12,7 @@
         <el-form-item>
           <el-button class="logup_button" round size="medium" @click="$router.push('/logup')">没有账号</el-button>
           <el-button type="primary" round size="medium" class="login_button" @click="login">立即登录</el-button>
-          <el-button class="findkey_button" round size="medium" @click="$router.push('/findkey')">修改密码</el-button>
+          <el-button class="changekey_button" round size="medium" @click="$router.push('/changekey')">修改密码</el-button>
         </el-form-item>
       </el-form>
     </div>
