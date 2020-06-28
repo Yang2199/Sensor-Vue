@@ -2,13 +2,13 @@
   <div>
     <el-row>
       <el-col :span="20">
-        <el-page-header @back="$router.push('/welcome')" content="网关匹配"></el-page-header>
+        <el-page-header @back="$router.push('/welcome')" content="匹配到的网关"></el-page-header>
       </el-col>
     </el-row>
     <el-card>
       <el-row type="flex" align="middle" style="height:60px;">
         <el-col :span="6" style="font-weight:bold;">
-          传感器： {{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
+          {{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
         </el-col>
         <el-col :span="4" style="text-align:left;font-weight:bold;">
            {{sensorInfo.companyName}}
@@ -20,16 +20,15 @@
           fixed
           prop='gatewayName'
           label='型号'
-          width='150'
+          width='250'
         ></el-table-column>
-        <el-table-column prop='sensorType' label='类型' width='120' sortable>网关</el-table-column>
         <el-table-column sortable prop='companyName' label='出品公司' width='200'></el-table-column>
-        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='200'>
+        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='180'>
           <template slot-scope="scope">
             {{scope.row.tempMin}} - {{scope.row.tempMax}} ℃
           </template>
         </el-table-column>
-        <el-table-column sortable prop='inputType' label='输入类型' width='200'>
+        <el-table-column sortable prop='inputType' label='输入类型' width='220'>
           <template  slot-scope="scope">
             <div v-if="scope.row.inputType === 2">模拟信号，数字信号</div>
             <div v-else-if="scope.row.inputType === 1">数字信号</div>

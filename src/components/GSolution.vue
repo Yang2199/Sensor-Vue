@@ -2,13 +2,13 @@
   <div>
     <el-row>
       <el-col :span="20">
-        <el-page-header @back="$router.push('/welcome')" content="匹配到的网关"></el-page-header>
+        <el-page-header @back="$router.push('/welcome')" content="匹配到的传感器"></el-page-header>
       </el-col>
     </el-row>
     <el-card>
       <el-row type="flex" align="middle" style="height:60px;">
         <el-col :span="6" style="font-weight:bold;">
-          {{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
+          传感器：{{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
         </el-col>
         <el-col :span="4" style="text-align:left;font-weight:bold;">
            {{sensorInfo.companyName}}
@@ -89,7 +89,7 @@ export default {
   created () {
     this.getSensor()
     this.getBestMatch()
-    this.$emit('flushMenu', '/solution')
+    this.$emit('flushMenu', '/Gsolution')
   },
   methods: {
     // 向后端查询数据
@@ -122,7 +122,7 @@ export default {
     // 跳转全部匹配
     matchAll () {
       this.$router.push({
-        name: 'solutionAll',
+        name: 'GsolutionAll',
         params: {
           id: this.$route.params.id
         }

@@ -19,7 +19,9 @@ import SensorDetail from '../components/SensorDetail.vue'
 import GatewayDetail from '../components/GatewayDetail.vue'
 import CompanyDetail from '../components/Company.vue'
 import Solution from '../components/Solution.vue'
+import GSolution from '../components/GSolution.vue'
 import SolutionAll from '../components/SolutionAll.vue'
+import GSolutionAll from '../components/GSolutionAll.vue'
 import Search from '../components/Search.vue'
 
 Vue.use(VueRouter)
@@ -49,7 +51,9 @@ const routes = [
       { path: '/updategateway/:id', name: 'updateGateway', component: UpdateGateway }, ///
       { path: '/info', component: Info },
       { path: '/solution/:id', name: 'solution', component: Solution },
+      { path: '/Gsolution/:id', name: 'Gsolution', component: GSolution },
       { path: '/solutionAll/:id', name: 'solutionAll', component: SolutionAll },
+      { path: '/GsolutionAll/:id', name: 'GsolutionAll', component: GSolutionAll },
       { path: '/search/:word', name: 'search', component: Search }
     ]
   }

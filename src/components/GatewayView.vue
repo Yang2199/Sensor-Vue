@@ -21,17 +21,12 @@
           </el-option>
         </el-select>
         </el-col>
-        <el-col :span="21">
+        <el-col :span="15">
            <el-checkbox-group v-model="featureOption">
-             <el-checkbox label="耐高温"></el-checkbox>
              <el-checkbox label="耐低温"></el-checkbox>
-             <el-checkbox label="耐油"></el-checkbox>
-             <el-checkbox label="高防水等级"></el-checkbox>
              <el-checkbox label="广测量范围"></el-checkbox>
-             <el-checkbox label="低噪声"></el-checkbox>
              <el-checkbox label="高精度"></el-checkbox>
              <el-checkbox label="低功耗"></el-checkbox>
-             <el-checkbox label="微型"></el-checkbox>
              <el-checkbox label="抗冲击"></el-checkbox>
              <el-checkbox label="长寿命"></el-checkbox>
           </el-checkbox-group>

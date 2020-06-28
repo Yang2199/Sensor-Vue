@@ -39,7 +39,7 @@
           <div>{{device.gatewayOther}}</div>
         </el-collapse-item>
       </el-collapse>
-      <el-button type="success" @click="matchSensor" round style="margin:50px;" disabled>匹配传感器</el-button>
+      <el-button type="success" @click="matchSensor" round style="margin:50px;">匹配传感器</el-button>
     </el-card>
 </div>
 </template>
@@ -117,12 +117,11 @@ export default {
         }
       })
     },
-    matchGateway () {
+    matchSensor () {
       this.$router.push({
-        name: 'solution',
+        name: 'Gsolution',
         params: {
           gatewayId: this.$route.params.id
-          // this.$router.push('/solution')
         }
       })
     }

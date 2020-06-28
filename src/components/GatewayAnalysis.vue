@@ -44,11 +44,11 @@ export default {
             radius: ['65%', '93%'],
             avoidLabelOverlap: false,
             label: {
-              normal: {
-                show: false,
-                fontSize: '80',
-                position: 'center'
-              },
+              // normal: {
+              //   show: false,
+              //   fontSize: '80',
+              //   position: 'center'
+              // },
               emphasis: {
                 show: true,
                 textStyle: {
@@ -57,12 +57,12 @@ export default {
                 }
               }
             },
-            labelLine: {
-              normal: {
-                fontSize: '80',
-                show: false
-              }
-            },
+            // labelLine: {
+            //   normal: {
+            //     fontSize: '80',
+            //     show: false
+            //   }
+            // },
             data: this.opinionData
           }
         ]

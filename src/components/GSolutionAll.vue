@@ -2,20 +2,20 @@
   <div>
     <el-row>
       <el-col :span="20">
-        <el-page-header @back="$router.push('/welcome')" content="匹配到的网关"></el-page-header>
+        <el-page-header @back="$router.push('/welcome')" content="匹配到的传感器"></el-page-header>
       </el-col>
     </el-row>
     <el-card>
       <el-row type="flex" align="middle" style="height:60px;">
         <el-col :span="6" style="font-weight:bold;">
-          {{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
+          传感器：{{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
         </el-col>
         <el-col :span="4" style="text-align:left;font-weight:bold;">
            {{sensorInfo.companyName}}
         </el-col>
       </el-row>
       <!--表格显示-->
-      <el-table :data='bestMatch' style='width: 100%' stripe>
+      <el-table :data='tableData' style='width: 100%' height='458' stripe>
         <el-table-column sortable
           fixed
           prop='gatewayName'
@@ -47,8 +47,13 @@
           </template>
         </el-table-column>
       </el-table>
-      <!-- 按钮 -->
-      <el-button type="success" @click="matchAll" round style="margin:50px;">不满意？查询全部</el-button>
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :current-page.sync="queryInfo.pageNum"
+        :page-size="queryInfo.pageSize"
+        layout="total, prev, pager, next"
+        :total="queryInfo.total">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -59,15 +64,14 @@ export default {
     return {
       // 查询信息
       queryInfo: {
-        type: '', // 传感器类型
-        condition: '', // 传感器条件
+        sensorId: this.$route.params.id,
         total: 0, // 条目总数
         pageNum: 1, // 当前页
         pageSize: 7 // 每页条目数
       },
       // 数据
       sensorInfo: {},
-      bestMatch: [],
+      tableData: [],
       // 选项
       typeOption: [{
         value: '',
@@ -88,11 +92,10 @@ export default {
   },
   created () {
     this.getSensor()
-    this.getBestMatch()
+    this.getList()
     this.$emit('flushMenu', '/solution')
   },
   methods: {
-    // 向后端查询数据
     async getSensor () {
       const { data: res } = await this.$http.get('SensorDetail', {
         params: {
@@ -106,32 +109,22 @@ export default {
       this.sensorInfo = res.data
     },
     // 向后端查询数据
-    async getBestMatch () {
-      const { data: res } = await this.$http.get('sensorBestMatch', {
-        params: {
-          sensorId: this.$route.params.id
-        }
+    async getList () {
+      const { data: res } = await this.$http.get('sensorAllMatch', {
+        params: this.queryInfo
       })
       if (res.code === 404) {
         return this.$message.error('未找到要求的网关，请切换查询条件。')
       } else if (res.code !== 200) {
         return this.$message.error('获取网关数据失败，请重试。')
       }
-      this.bestMatch = res.list
-    },
-    // 跳转全部匹配
-    matchAll () {
-      this.$router.push({
-        name: 'solutionAll',
-        params: {
-          id: this.$route.params.id
-        }
-      })
+      this.queryInfo.total = res.total
+      this.tableData = res.data
     },
     // 换页
     handleCurrentChange (newPage) {
       this.queryInfo.pagenum = newPage
-      // this.getList()
+      this.getList()
     },
     // 查询具体传感器信息
     getDevice (id) {
