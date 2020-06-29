@@ -108,7 +108,7 @@ export default {
   width:40%;
   height:100%;
   padding:0 10% 0 10%;
-  background-color:rgba(255, 255, 255, 0.5);
+  background-color:rgba(255, 255, 255, 0.6);
   position:absolute;
   left:50%;
   transform: translate(-50%, 0);
@@ -118,7 +118,7 @@ export default {
     text-align:left;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 135px;
+    margin-left: 85px;
     font-size:30px;
     font-weight:900;
 }

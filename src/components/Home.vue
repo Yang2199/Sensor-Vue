@@ -119,7 +119,7 @@ export default {
   display: flex;
   padding-left:0;
   justify-content: space-between;
-  background-color: #ffff99;
+  background-color: #cfffff;
   color: white;
   font-size: 25px;
   display: flex;
@@ -131,7 +131,7 @@ export default {
   height:100%;
   margin-right: 20px;
   color:white;
-  background-color: #ffff99;
+  background-color: #cfffff;
 }
 
 .el-aside {

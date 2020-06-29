@@ -1,9 +1,13 @@
 <template>
-  <!-- <el-row>
+  <div>
+  <el-row>
     <el-page-header @back="$router.go(-1)" content="传感器数据分析"></el-page-header>
-  </el-row> -->
+  </el-row>
   <!--为echarts准备一个具备大小的容器dom：-->
-  <div id="main" style="width: 960px;height: 600px;"></div>
+  <el-card>
+  <div id="main" style="width: 1000px;height: 600px;"></div>
+  </el-card>
+  </div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -45,10 +49,10 @@ export default {
             radius: ['65%', '93%'],
             avoidLabelOverlap: false,
             label: {
-              normal: {
-                show: false,
-                position: 'center'
-              },
+              // normal: {
+              //   show: false,
+              //   position: 'center'
+              // },
               emphasis: {
                 show: true,
                 textStyle: {
@@ -57,11 +61,11 @@ export default {
                 }
               }
             },
-            labelLine: {
-              normal: {
-                show: false
-              }
-            },
+            // labelLine: {
+            //   normal: {
+            //     show: false
+            //   }
+            // },
             data: this.opinionData
           }
         ]
@@ -77,10 +81,10 @@ export default {
 }
 </script>
 <style scoped>
-  * {
-      margin-top: 50px;
+  #main{
+      margin-top: 15px;
       margin-bottom: 50px;
-      margin-left: 135px;
+      margin-left: 120px;
       padding: 0;
       list-style: none;
       font-size: '80';

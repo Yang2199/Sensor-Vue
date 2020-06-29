@@ -1,9 +1,13 @@
 <template>
-  <!-- <el-row>
+  <div>
+  <el-row>
     <el-page-header @back="$router.go(-1)" content="网关数据分析"></el-page-header>
-  </el-row> -->
+  </el-row>
   <!--为echarts准备一个具备大小的容器dom：-->
+  <el-card>
   <div id="main" style="width: 960px;height: 600px;"></div>
+  </el-card>
+  </div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -78,10 +82,10 @@ export default {
 }
 </script>
 <style scoped>
-  * {
-      margin-top: 50px;
+  #main{
+      margin-top: 15px;
       margin-bottom: 50px;
-      margin-left: 135px;
+      margin-left: 120px;
       padding: 0;
       list-style: none;
       font-size: '80';

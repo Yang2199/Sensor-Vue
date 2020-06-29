@@ -1,7 +1,7 @@
 <template>
   <div class="login_container">
     <div class="login_box">
-      <h1>登录系统</h1>
+      <h1>传感器分析引擎</h1>
       <el-form ref="loginFormRef"  class="login_form" :model="loginForm" :rules="rules">
         <el-form-item label="账  号" label-width="60px" prop="username">
           <el-input prefix-icon="el-icon-user" v-model="loginForm.username"></el-input>
