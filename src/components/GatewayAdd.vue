@@ -27,15 +27,16 @@
             </el-select>
           </el-form-item>
           <el-form-item label="输入范围" :inline="true">
-               <el-input  class="small_input_box" v-model="addForm.inputMin"></el-input>
+               <!-- v-enter-number type="number" -->
+               <el-input  class="small_input_box" v-model="addForm.inputMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="addForm.inputMax"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.inputMax" v-enter-number type="number"></el-input>
                V
           </el-form-item>
           <el-form-item label="工作温度" :inline="true">
-               <el-input  class="small_input_box" v-model="addForm.tempMin"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.tempMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="addForm.tempMax"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.tempMax" v-enter-number type="number"></el-input>
                ℃
           </el-form-item>
           <el-form-item label="工作环境">
@@ -79,13 +80,13 @@
 <script>
 export default {
   data () {
-    var validatePass = (rule, value, callback) => {
-      if (value < this.addForm.inputMin) {
-        callback(new Error('Max不小于Min，请重新输入'))
-      } else {
-        callback()
-      }
-    }
+    // var validatePass = (rule, value, callback) => {
+    //   if (value.replace([0 - 9], '') !== "") {
+    //     callback(new Error('不是数字'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
     return {
       addForm: {
         gatewayName: '',
@@ -108,9 +109,9 @@ export default {
       },
       featureOption: [],
       rules: {
-        inputMax: [
-          { validator: validatePass, trigger: 'blur' }
-        ]
+        // inputMax: [
+        //   { validator: validatePass, trigger: 'blur' }
+        // ]
       },
       companies: []
     }

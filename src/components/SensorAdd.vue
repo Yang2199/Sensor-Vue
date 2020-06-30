@@ -39,9 +39,9 @@
             </el-select>
           </el-form-item>
           <el-form-item label="输出范围" :inline="true">
-               <el-input  class="small_input_box" v-model="addForm.outputMin"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.outputMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="addForm.outputMax"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.outputMax" v-enter-number type="number"></el-input>
                V
           </el-form-item>
           <el-form-item label="输入描述">
@@ -51,9 +51,9 @@
              <el-input type="textarea" v-model="addForm.sensorOutput"></el-input>
           </el-form-item>
           <el-form-item label="工作温度" :inline="true">
-               <el-input  class="small_input_box" v-model="addForm.tempMin"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.tempMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="addForm.tempMax"></el-input>
+               <el-input  class="small_input_box" v-model="addForm.tempMax" v-enter-number type="number"></el-input>
                ℃
           </el-form-item>
           <el-form-item label="测量范围">

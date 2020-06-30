@@ -27,15 +27,15 @@
             </el-select>
           </el-form-item>
           <el-form-item label="输入范围" :inline="true">
-               <el-input  class="small_input_box" v-model="updateForm.inputMin"></el-input>
+               <el-input  class="small_input_box" v-model="updateForm.inputMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="updateForm.inputMax"></el-input>
+               <el-input  class="small_input_box" v-model="updateForm.inputMax" v-enter-number type="number"></el-input>
                V
           </el-form-item>
           <el-form-item label="工作温度" :inline="true">
-               <el-input  class="small_input_box" v-model="updateForm.tempMin"></el-input>
+               <el-input  class="small_input_box" v-model="updateForm.tempMin" v-enter-number type="number"></el-input>
                -
-               <el-input  class="small_input_box" v-model="updateForm.tempMax"></el-input>
+               <el-input  class="small_input_box" v-model="updateForm.tempMax" v-enter-number type="number"></el-input>
                ℃
           </el-form-item>
           <el-form-item label="工作环境">

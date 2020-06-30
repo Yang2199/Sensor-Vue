@@ -58,7 +58,7 @@ export default {
 
 <style  scoped>
 .login_container{
-  background-color: #27b144;
+  background-color: #000000;
   height:100%;
   background-image: url("/img/background.jpg");
   background-size: cover;
@@ -68,7 +68,7 @@ export default {
 .login_box{
   width:450px;
   height:300px;
-  background-color:rgba(255, 255, 255, 0.8);
+  background-color:rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   position:absolute;
   left:50%;
