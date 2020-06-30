@@ -45,7 +45,7 @@ export default {
           {
             name: '网关特性',
             type: 'pie',
-            radius: ['65%', '93%'],
+            radius: ['45%', '75%'],
             avoidLabelOverlap: false,
             label: {
               // normal: {

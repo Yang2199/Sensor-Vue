@@ -10,6 +10,7 @@
       </el-col>
     </el-row>
     <el-card >
+      <el-image src="/img/1.jpg" fit="fill" style="width:300px; height: 300px;" />
       <h1 style="padding-bottom:20px;font-size:35px;">{{device.sensorName}}</h1>
       <p>{{device.sensorType}} | {{device.sensorTypeDetail}}</p>
       <el-button type="text" @click="showCompany()" style="padding-bottom:55px;">{{device.companyName}}</el-button>

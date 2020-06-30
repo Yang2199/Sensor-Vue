@@ -5,7 +5,7 @@
   </el-row>
   <!--为echarts准备一个具备大小的容器dom：-->
   <el-card>
-  <div id="main" style="width: 1000px;height: 600px;"></div>
+  <div id="main" style="width: 1000px;height: 400px;"></div>
   </el-card>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
           {
             name: '传感器类型',
             type: 'pie',
-            radius: ['65%', '93%'],
+            radius: ['45%', '75%'],
             avoidLabelOverlap: false,
             label: {
               // normal: {

@@ -8,7 +8,7 @@
     <!--传感器显示-->
     <el-card v-if="sensorList!=''">
       <el-row type="flex" align="middle">
-        <el-col :span="6" style="font-weight:bold;">
+        <el-col :span="24" style="font-weight:bold;">
          传感器
         </el-col>
       </el-row>
@@ -49,7 +49,7 @@
     <!--网关显示-->
     <el-card v-if="gatewayList!=''">
       <el-row type="flex" align="middle">
-        <el-col :span="6" style="font-weight:bold;">
+        <el-col :span="24" style="font-weight:bold;">
          网关
         </el-col>
       </el-row>
@@ -90,7 +90,7 @@
     <!--公司显示-->
     <el-card v-if="companyList!=''">
       <el-row type="flex" align="middle">
-        <el-col :span="6" style="font-weight:bold;">
+        <el-col :span="24" style="font-weight:bold;">
          公司
         </el-col>
       </el-row>
@@ -118,7 +118,7 @@
     <!-- 用户显示-->
     <el-card v-if="userList!=''">
       <el-row type="flex" align="middle">
-        <el-col :span="6" style="font-weight:bold;">
+        <el-col :span="24" style="font-weight:bold;">
          用户
         </el-col>
       </el-row>

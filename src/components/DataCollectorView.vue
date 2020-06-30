@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="cView">
     <el-row>
       <el-col :span="20">
         <el-page-header @back="$router.push('/welcome')" content="数据采集器"></el-page-header>
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style>
-.welcome{
+.cView{
   margin-bottom: 50px;
 }
 

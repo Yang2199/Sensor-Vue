@@ -2,13 +2,13 @@
   <el-container class="home-container">
     <el-aside width="225px">
         <div style="height:60px;color:white;">
-          <p>欢迎 {{username}}</p>
+          <p @click="saveNavState('/info');$router.push('info')">欢迎 {{username}}</p>
         </div>
         <el-menu
           :default-active="activePath"
           :unique-opened=true
           class="el-menu-vertical-demo"
-          background-color="#0065f8"
+          background-color="#333764"
           text-color="#fff"
           active-text-color="#ffd04b"
           router
@@ -22,18 +22,11 @@
               <i class="el-icon-location"></i>
               <span>设备</span>
             </template>
-            <el-menu-item-group>
-              <span slot="title">传感器</span>
-              <el-menu-item index="/list/sensor" @click="saveNavState('/list/sensor')">传感器</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group>
-              <span slot="title">网关</span>
-              <el-menu-item index="/list/gateway" @click="saveNavState('/list/gateway')">网关</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group>
-              <span slot="title">数据采集器</span>
-              <el-menu-item index="/list/datacollector" @click="saveNavState('/list/datacollector')">数据采集器</el-menu-item>
-            </el-menu-item-group>
+
+            <el-menu-item index="/list/sensor" @click="saveNavState('/list/sensor')">传感器</el-menu-item>
+            <el-menu-item index="/list/gateway" @click="saveNavState('/list/gateway')">网关</el-menu-item>
+            <el-menu-item index="/list/datacollector" @click="saveNavState('/list/datacollector')">数据采集器</el-menu-item>
+
           </el-submenu>
           <el-menu-item index="/solution" :disabled="!isSolution">
             <i class="el-icon-document"></i>
@@ -119,7 +112,7 @@ export default {
   display: flex;
   padding-left:0;
   justify-content: space-between;
-  background-color: #cfffff;
+  background-color:#333764;
   color: white;
   font-size: 25px;
   display: flex;
@@ -131,10 +124,10 @@ export default {
   height:100%;
   margin-right: 20px;
   color:white;
-  background-color: #cfffff;
+  background-color: #333764;
 }
 
 .el-aside {
-  background-color: #0079f8;
+  background-color:#333764;
 }
 </style>

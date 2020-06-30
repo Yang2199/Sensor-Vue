@@ -40,6 +40,7 @@
             {{scope.row.inputMin}} - {{scope.row.inputMax}} V
           </template>
         </el-table-column>
+        <el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column>
         <el-table-column fixed='right' prop='button' label='操作' width='160'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>

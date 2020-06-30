@@ -39,6 +39,19 @@
       </el-row>
       <!--表格显示-->
       <el-table :data='tableData' style='width: 100%' height='458' stripe>
+        <!--
+        <el-table-column type="expand">
+      <template slot-scope="props">
+        <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item label="商品名称">
+            <span>{{ props.row.name }}</span>
+          </el-form-item>
+          <el-form-item label="所属店铺">
+            <span>{{ props.row.shop }}</span>
+          </el-form-item>
+        </el-form>
+        </template>
+       </el-table-column>-->
         <el-table-column sortable
           fixed
           prop='sensorName'
@@ -64,6 +77,7 @@
             {{scope.row.outputMin}} - {{scope.row.outputMax}} V
           </template>
         </el-table-column>
+        <el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column>
         <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
@@ -184,4 +198,5 @@ export default {
 .el-breadcrumb {
     margin: 15px;
 }
+
 </style>

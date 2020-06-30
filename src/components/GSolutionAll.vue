@@ -41,6 +41,7 @@
             {{scope.row.outputMin}} - {{scope.row.outputMax}} V
           </template>
         </el-table-column>
+        <el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column>
         <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
