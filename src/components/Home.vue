@@ -8,7 +8,7 @@
           :default-active="activePath"
           :unique-opened=true
           class="el-menu-vertical-demo"
-          background-color="#0065f8"
+          background-color="#0079f8"
           text-color="#fff"
           active-text-color="#ffd04b"
           router
@@ -119,7 +119,7 @@ export default {
   display: flex;
   padding-left:0;
   justify-content: space-between;
-  background-color: #cfffff;
+  background-color: #0079f8;
   color: white;
   font-size: 25px;
   display: flex;
@@ -131,7 +131,7 @@ export default {
   height:100%;
   margin-right: 20px;
   color:white;
-  background-color: #cfffff;
+  background-color: #0079f8;
 }
 
 .el-aside {
