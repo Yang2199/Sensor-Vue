@@ -5,7 +5,12 @@
   </el-row>
   <!--为echarts准备一个具备大小的容器dom：-->
   <el-card>
-  <div id="main" style="width: 960px;height: 600px;"></div>
+    <el-row>
+      <el-col :span="16">
+        <div id="type" style="width: 600px;height: 400px;"></div>
+      </el-col>
+      <el-col :span="8"></el-col>
+    </el-row>
   </el-card>
   </div>
 </template>
@@ -76,13 +81,13 @@ export default {
   // 调用
   mounted () {
     this.$nextTick(function () {
-      this.drawPie('main')
+      this.drawPie('type')
     })
   }
 }
 </script>
 <style scoped>
-  #main{
+  #type{
       margin-top: 15px;
       margin-bottom: 50px;
       margin-left: 120px;

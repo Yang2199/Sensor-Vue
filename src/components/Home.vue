@@ -2,7 +2,7 @@
   <el-container class="home-container">
     <el-aside width="225px">
         <div style="height:60px;color:white;">
-          <p @click="saveNavState('/info');$router.push('info')">欢迎 {{username}}</p>
+          <p @click="saveNavState('/info');$router.push('/info')">欢迎 {{username}}</p>
         </div>
         <el-menu
           :default-active="activePath"

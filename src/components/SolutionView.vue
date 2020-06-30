@@ -33,6 +33,7 @@
         @current-change="handleCurrentChange"
         :current-page.sync="queryInfo.pageNum"
         :page-size="queryInfo.pageSize"
+        :total="queryInfo.total"
         layout="total, prev, pager, next">
       </el-pagination>
     </el-card>
@@ -70,7 +71,7 @@ export default {
       } else if (res.code !== 200) {
         return this.$message.error('获取方案数据失败，请重试。')
       }
-      this.queryInfo.total = res.total
+      this.total = res.total
       this.tableData = res.solutions
     },
     // 换页

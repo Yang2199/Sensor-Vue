@@ -46,6 +46,34 @@
         </el-row>
         <p></p>
       </div>
+      <el-row type="flex" align="middle" style="height:60px;">
+        <el-col :span="24" style="font-weight:bold;">
+          我的方案
+        </el-col>
+      </el-row>
+      <!--表格显示-->
+      <el-table :data='tableData' style='width: 100%' stripe>
+        <el-table-column sortable
+          fixed
+          prop='sensorName'
+          label='传感器型号'
+          width='225'
+        ></el-table-column>
+        <el-table-column sortable
+          fixed
+          prop='gatewayName'
+          label='网关型号'
+          width='225'
+        ></el-table-column>
+        <el-table-column sortable prop='updateTime' label='创建时间' width='200'></el-table-column>
+        <el-table-column sortable prop='summary' label='概述' width='550'></el-table-column>
+        <!--<el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column> -->
+        <el-table-column fixed='right' prop='button' label='操作' width='100'>
+          <template slot-scope="scope">
+            <el-button type="primary" @click="getSolution(scope.row.solutionId)" icon="el-icon-search" size="small"></el-button>
+          </template>
+        </el-table-column>
+      </el-table>
     </el-card>
 </div>
 </template>
@@ -59,8 +87,8 @@ export default {
         phone: false,
         email: false,
         description: false
-      }
-
+      },
+      tableData: []
     }
   },
   async created () {
@@ -72,8 +100,24 @@ export default {
       return this.$router.go(-1)
     }
     this.myinfo = res.data
+    this.getList()
+    this.$emit('flushMenu', '/info')
   },
   methods: {
+    // 向后端查询数据
+    async getList () {
+      const { data: res } = await this.$http.get('mySolution', {
+        params: {
+          username: window.sessionStorage.getItem('username')
+        }
+      })
+      if (res.code === 404) {
+        return this.$message.error('未找到要求的方案，请切换查询条件。')
+      } else if (res.code !== 200) {
+        return this.$message.error('获取方案数据失败，请重试。')
+      }
+      this.tableData = res.solutions
+    },
     // 弹出框确认删除用户
     deleteConfirm () {
       this.$prompt('请再次输入密码确认', '删除用户', {
@@ -104,6 +148,14 @@ export default {
       })
       if (res.code !== 200) return this.$message.error('修改失败，请重试。')
       this.$message.success('用户信息修改成功。')
+    },
+    getSolution (id) {
+      this.$router.push({
+        name: 'SolutionDetail',
+        params: {
+          id: id
+        }
+      })
     }
   }
 }
