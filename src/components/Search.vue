@@ -41,7 +41,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='140'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getSensor(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="bestMatch(scope.row.sensorId)" icon="el-icon-s-operation" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -82,7 +82,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='140'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getGateway(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="bestMatch2(scope.row.gatewayId)" icon="el-icon-s-operation" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -110,7 +110,6 @@
         <el-table-column fixed='right' prop='button' label='操作' width='140'>
           <template slot-scope="scope">
             <el-button type="primary" @click="showCompany(scope.row.companyName)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -212,6 +211,22 @@ export default {
         name: 'company',
         params: {
           companyName: name
+        }
+      })
+    },
+    bestMatch (id) {
+      this.$router.push({
+        name: 'solution',
+        params: {
+          id: id
+        }
+      })
+    },
+    bestMatch2 (id) {
+      this.$router.push({
+        name: 'Gsolution',
+        params: {
+          id: id
         }
       })
     }

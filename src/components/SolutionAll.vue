@@ -2,16 +2,14 @@
   <div>
     <el-row>
       <el-col :span="20">
-        <el-page-header @back="$router.push('/welcome')" content="匹配到的网关"></el-page-header>
+        <el-page-header @back="$router.go(-1)" :content="sensorInfo.sensorName + ' (' + sensorInfo.sensorType + ')'">
+        </el-page-header>
       </el-col>
     </el-row>
     <el-card>
       <el-row type="flex" align="middle" style="height:60px;">
-        <el-col :span="6" style="font-weight:bold;">
-          {{sensorInfo.sensorName}}（{{sensorInfo.sensorType}}）
-        </el-col>
-        <el-col :span="4" style="text-align:left;font-weight:bold;">
-           {{sensorInfo.companyName}}
+        <el-col :span="24" style="font-weight:bold;">
+          全部匹配网关
         </el-col>
       </el-row>
       <!--表格显示-->
@@ -44,7 +42,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='160'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="showAddSolution(scope.row.gatewayId, scope.row.gatewayName)" icon="el-icon-plus" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -63,6 +61,11 @@
 export default {
   data () {
     return {
+      solutionQuery: {
+        summary: '',
+        gatewayId: '',
+        gatewayName: ''
+      },
       // 查询信息
       queryInfo: {
         sensorId: this.$route.params.id,
@@ -94,7 +97,7 @@ export default {
   created () {
     this.getSensor()
     this.getList()
-    this.$emit('flushMenu', '/solution')
+    this.$emit('flushMenu', '/list/solution')
   },
   methods: {
     async getSensor () {
@@ -133,6 +136,36 @@ export default {
         name: 'gateway',
         params: {
           id: id
+        }
+      })
+    },
+    showAddSolution (gatewayId, gatewayName) {
+      this.solutionQuery.gatewayId = gatewayId
+      this.solutionQuery.gatewayName = gatewayName
+      this.$prompt('请输入方案概述', '添加方案', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(({ value }) => {
+        this.addSolution(value)
+      })
+    },
+    // s
+    async addSolution (summary) {
+      const { data: res } = await this.$http.post('addSolution', {
+        username: window.sessionStorage.getItem('username'),
+        summary: summary,
+        gatewayId: this.solutionQuery.gatewayId,
+        gatewayName: this.solutionQuery.gatewayName,
+        sensorId: this.sensorInfo.sensorId,
+        sensorName: this.sensorInfo.sensorName,
+        note: ''
+      })
+      if (res.code !== 200) return this.$message.error('添加失败，请重试。')
+      this.$message.success('方案添加成功。')
+      this.$router.push({
+        name: 'SolutionDetail',
+        params: {
+          id: res.solutionId
         }
       })
     }

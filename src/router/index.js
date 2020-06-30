@@ -23,6 +23,8 @@ import GSolution from '../components/GSolution.vue'
 import SolutionAll from '../components/SolutionAll.vue'
 import GSolutionAll from '../components/GSolutionAll.vue'
 import Search from '../components/Search.vue'
+import SolutionDetail from '../components/SolutionDetail.vue'
+import SolutionView from '../components/SolutionView.vue'
 
 Vue.use(VueRouter)
 
@@ -40,8 +42,10 @@ const routes = [
       { path: '/list/sensor', component: SensorView }, // 传感器列表
       { path: '/list/gateway', component: GatewayView }, // 网关列表
       { path: '/list/datacollector', component: DataCollectorView }, ///
+      { path: '/list/solution', component: SolutionView }, ///
       { path: '/sensor/:id', name: 'sensor', component: SensorDetail }, // 传感器详细信息
       { path: '/gateway/:id', name: 'gateway', component: GatewayDetail }, // 网关详细信息
+      { path: '/solutionDetail/:id', name: 'SolutionDetail', component: SolutionDetail }, // 方案详细信息
       { path: '/company/:companyName', name: 'company', component: CompanyDetail },
       { path: '/analysissensor', component: analysissensor }, ///
       { path: '/analysisgateway', component: analysisgateway }, ///
@@ -55,6 +59,7 @@ const routes = [
       { path: '/solutionAll/:id', name: 'solutionAll', component: SolutionAll },
       { path: '/GsolutionAll/:id', name: 'GsolutionAll', component: GSolutionAll },
       { path: '/search/:word', name: 'search', component: Search }
+
     ]
   }
 ]

@@ -95,7 +95,7 @@ export default {
 .changekey_container{
   background-color: #ffffff;
   height:100%;
-  background-image: url('http://youimg1.c-ctrip.com/target/fd/tg/g3/M07/27/3A/CggYG1YdXy2AITGyABB_-p7zf-Y917.jpg');
+  background-image: url("/img/background.jpg");
   background-size: cover;
   background-position: center;
 }

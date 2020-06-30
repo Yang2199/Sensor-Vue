@@ -60,7 +60,7 @@ export default {
 .login_container{
   background-color: #27b144;
   height:100%;
-  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592676557100&di=588f6c3b6da0fe59ac16f90d821d657a&imgtype=0&src=http%3A%2F%2Fimg01.jituwang.com%2F190325%2F260522-1Z32506452277.jpg');
+  background-image: url("/img/background.jpg");
   background-size: cover;
   background-position: center;
 }

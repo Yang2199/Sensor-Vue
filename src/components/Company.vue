@@ -40,7 +40,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='140'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="bestMatch(scope.row.sensorId)" icon="el-icon-s-operation" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -87,6 +87,14 @@ export default {
     getDevice (id) {
       this.$router.push({
         name: 'sensor',
+        params: {
+          id: id
+        }
+      })
+    },
+    bestMatch (id) {
+      this.$router.push({
+        name: 'Gsolution',
         params: {
           id: id
         }

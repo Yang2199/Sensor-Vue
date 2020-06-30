@@ -28,7 +28,7 @@
             <el-menu-item index="/list/datacollector" @click="saveNavState('/list/datacollector')">数据采集器</el-menu-item>
 
           </el-submenu>
-          <el-menu-item index="/solution" :disabled="!isSolution">
+          <el-menu-item index="/list/solution">
             <i class="el-icon-document"></i>
             <span slot="title">方案</span>
           </el-menu-item>

@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="4">
         <el-button type="primary" size="small" icon="el-icon-circle-plus" round  @click="$router.push('/addgateway')">添加</el-button>
-        <el-button type="primary" size="small" icon="el-icon-s-opportunity" round  @click="$router.push('/analysisgateway')">分析</el-button>
+        <el-button type="primary" size="small" icon="el-icon-s-data" round  @click="$router.push('/analysisgateway')">分析</el-button>
       </el-col>
     </el-row>
     <el-card>
@@ -62,7 +62,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='160'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="bestMatch(scope.row.gatewayId)" icon="el-icon-s-operation" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -142,6 +142,14 @@ export default {
     getDevice (id) {
       this.$router.push({
         name: 'gateway',
+        params: {
+          id: id
+        }
+      })
+    },
+    bestMatch (id) {
+      this.$router.push({
+        name: 'Gsolution',
         params: {
           id: id
         }

@@ -2,18 +2,39 @@
   <div>
     <el-row>
       <el-col :span="20">
-        <el-page-header @back="$router.push('/welcome')" content="匹配到的传感器"></el-page-header>
+        <el-page-header @back="$router.push('/welcome')" :content="gatewayInfo.gatewayName + ' (网关)'"></el-page-header>
       </el-col>
     </el-row>
     <el-card>
-      <!-- <el-row type="flex" align="middle" style="height:60px;">
-        <el-col :span="6" style="font-weight:bold;">
-          {{gatewayInfo.gatewayName}}（{{gatewayInfo.gatewayType}}）
+      <el-row type="flex" align="middle" style="height:60px;">
+        <el-col :span="24" style="font-weight:bold;">
+          可用方案
         </el-col>
-        <el-col :span="4" style="text-align:left;font-weight:bold;">
-           {{gatewayInfo.companyName}}
+      </el-row>
+      <!--表格显示-->
+      <el-table :data='solution' style='width: 100%' stripe>
+        <el-table-column sortable
+          fixed
+          prop='gatewayName'
+          label='网关型号'
+          width='225'
+        ></el-table-column>
+        <el-table-column sortable prop='username' label='创建者' width='175'></el-table-column>
+        <el-table-column sortable prop='summary' label='概述' width='575'></el-table-column>
+        <!--<el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column> -->
+        <el-table-column fixed='right' prop='button' label='操作' width='160'>
+          <template slot-scope="scope">
+            <el-button type="primary" @click="getSolution(scope.row.solutionId)" icon="el-icon-search" size="small"></el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+    <el-card>
+      <el-row type="flex" align="middle" style="height:60px;">
+        <el-col :span="24" style="font-weight:bold;">
+          最佳匹配传感器
         </el-col>
-      </el-row> -->
+      </el-row>
       <!--表格显示-->
       <el-table :data='bestMatch' style='width: 100%' stripe>
         <el-table-column sortable
@@ -45,7 +66,7 @@
         <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="small"></el-button>
+            <el-button type="warning" @click="showAddSolution(scope.row.sensorId, scope.row.sensorName)" icon="el-icon-plus" size="small"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -59,6 +80,11 @@
 export default {
   data () {
     return {
+      solutionQuery: {
+        summary: '',
+        sensorId: '',
+        sensorName: ''
+      },
       // 查询信息
       queryInfo: {
         type: '', // 传感器类型
@@ -70,6 +96,7 @@ export default {
       // 数据
       gatewayInfo: {},
       bestMatch: [],
+      solution: [],
       // 选项
       typeOption: [{
         value: '',
@@ -96,7 +123,7 @@ export default {
   methods: {
     // 向后端查询数据
     async getGateway () {
-      const { data: res } = await this.$http.get('GatewayDetail', {
+      const { data: res } = await this.$http.get('queryGatewayDetail', {
         params: {
           gatewayId: this.$route.params.id
         }
@@ -120,6 +147,16 @@ export default {
         return this.$message.error('获取网关数据失败，请重试。')
       }
       this.bestMatch = res.list
+      this.solution = res.solutions
+    },
+    // 向后端查询具体方案
+    getSolution (id) {
+      this.$router.push({
+        name: 'SolutionDetail',
+        params: {
+          id: id
+        }
+      })
     },
     // 跳转全部匹配
     matchAll () {
@@ -141,6 +178,36 @@ export default {
         name: 'sensor',
         params: {
           id: id
+        }
+      })
+    },
+    showAddSolution (sensorId, sensorName) {
+      this.solutionQuery.sensorId = sensorId
+      this.solutionQuery.sensorName = sensorName
+      this.$prompt('请输入方案概述', '添加方案', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(({ value }) => {
+        this.addSolution(value)
+      })
+    },
+    // s
+    async addSolution (summary) {
+      const { data: res } = await this.$http.post('addSolution', {
+        username: window.sessionStorage.getItem('username'),
+        summary: summary,
+        sensorId: this.solutionQuery.sensorId,
+        sensorName: this.solutionQuery.sensorName,
+        gatewayId: this.gatewayInfo.gatewayId,
+        gatewayName: this.gatewayInfo.gatewayName,
+        note: ''
+      })
+      if (res.code !== 200) return this.$message.error('添加失败，请重试。')
+      this.$message.success('方案添加成功。')
+      this.$router.push({
+        name: 'SolutionDetail',
+        params: {
+          id: res.solutionId
         }
       })
     }
