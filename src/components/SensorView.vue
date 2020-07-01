@@ -56,11 +56,11 @@
           fixed
           prop='sensorName'
           label='型号'
-          width='180'
+          width='160'
         ></el-table-column>
-        <el-table-column prop='sensorType' label='类型' width='160' sortable></el-table-column>
-        <el-table-column sortable prop='companyName' label='出品公司' width='160'></el-table-column>
-        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='160'>
+        <el-table-column prop='sensorType' label='类型' width='130' sortable></el-table-column>
+        <el-table-column sortable prop='companyName' label='出品公司' width='130'></el-table-column>
+        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='130'>
           <template slot-scope="scope">
             {{scope.row.tempMin}} - {{scope.row.tempMax}} ℃
           </template>
@@ -72,12 +72,12 @@
             <div v-else-if="scope.row.outputType === 0">模拟信号</div>
           </template>
         </el-table-column>
-        <el-table-column sortable prop='outputMin,outputMax' label='输出范围' width='200'>
+        <el-table-column sortable prop='outputMin,outputMax' label='输出范围' width='130'>
           <template slot-scope="scope">
             {{scope.row.outputMin}} - {{scope.row.outputMax}} V
           </template>
         </el-table-column>
-        <el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column>
+        <el-table-column sortable prop='updateTime' label='更新时间' width='170'></el-table-column>
         <el-table-column fixed='right' prop='button' label='操作' width='150'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.sensorId)" icon="el-icon-search" size="small"></el-button>

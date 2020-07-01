@@ -78,7 +78,7 @@ export default {
           {
             name: '传感器类型',
             type: 'pie',
-            radius: ['45%', '75%'],
+            radius: ['50%', '80%'],
             avoidLabelOverlap: false,
             label: {
               // normal: {

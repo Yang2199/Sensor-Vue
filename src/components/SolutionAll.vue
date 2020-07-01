@@ -18,27 +18,27 @@
           fixed
           prop='gatewayName'
           label='型号'
-          width='225'
+          width='200'
         ></el-table-column>
-        <el-table-column sortable prop='companyName' label='出品公司' width='225'></el-table-column>
-        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='175'>
+        <el-table-column sortable prop='companyName' label='出品公司' width='200'></el-table-column>
+        <el-table-column sortable prop='tempMin,tempMax' label='工作温度' width='150'>
           <template slot-scope="scope">
             {{scope.row.tempMin}} - {{scope.row.tempMax}} ℃
           </template>
         </el-table-column>
-        <el-table-column sortable prop='inputType' label='输入类型' width='225'>
+        <el-table-column sortable prop='inputType' label='输入类型' width='200'>
           <template  slot-scope="scope">
             <div v-if="scope.row.inputType === 2">模拟信号，数字信号</div>
             <div v-else-if="scope.row.inputType === 1">数字信号</div>
             <div v-else-if="scope.row.inputType === 0">模拟信号</div>
           </template>
         </el-table-column>
-        <el-table-column sortable prop='inputMin,inputMax' label='输入范围' width='150'>
+        <el-table-column sortable prop='inputMin,inputMax' label='输入范围' width='130'>
           <template slot-scope="scope">
             {{scope.row.inputMin}} - {{scope.row.inputMax}} V
           </template>
         </el-table-column>
-        <el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column>
+        <el-table-column sortable prop='updateTime' label='更新时间' width='160'></el-table-column>
         <el-table-column fixed='right' prop='button' label='操作' width='160'>
           <template slot-scope="scope">
             <el-button type="primary" @click="getDevice(scope.row.gatewayId)" icon="el-icon-search" size="small"></el-button>

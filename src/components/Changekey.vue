@@ -96,6 +96,7 @@ export default {
   background-color: #ffffff;
   height:100%;
   background-image: url("/img/background.jpg");
+  /* background-image: url("http://youimg1.c-ctrip.com/target/fd/tg/g3/M07/27/3A/CggYG1YdXy2AITGyABB_-p7zf-Y917.jpg"); */
   background-size: cover;
   background-position: center;
 }
@@ -104,7 +105,7 @@ export default {
   width:40%;
   height:100%;
   padding:0 10% 0 10%;
-  background-color:rgba(255, 255, 255, 0.6);
+  background-color:rgba(255, 255, 255, 0.8);
   position:absolute;
   left:50%;
   transform: translate(-50%, 0);

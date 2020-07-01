@@ -7,7 +7,7 @@
   <el-card>
     <el-row>
       <el-col :span="16">
-        <div id="type" style="width: 600px;height: 400px;"></div>
+        <div id="type" style="width: 600px;height: 480px;"></div>
       </el-col>
       <el-col :span="8"></el-col>
     </el-row>
@@ -42,7 +42,7 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          x: 'left',
+          x: 'right',
           fontSize: '100',
           data: this.opinion
         },
@@ -50,7 +50,7 @@ export default {
           {
             name: '网关特性',
             type: 'pie',
-            radius: ['45%', '75%'],
+            radius: ['50%', '80%'],
             avoidLabelOverlap: false,
             label: {
               // normal: {
@@ -90,7 +90,7 @@ export default {
   #type{
       margin-top: 15px;
       margin-bottom: 50px;
-      margin-left: 120px;
+      margin-left: 70px;
       padding: 0;
       list-style: none;
       font-size: '80';

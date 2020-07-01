@@ -20,8 +20,8 @@
           label='网关型号'
           width='225'
         ></el-table-column>
-        <el-table-column sortable prop='username' label='创建者' width='175'></el-table-column>
-        <el-table-column sortable prop='summary' label='概述' width='575'></el-table-column>
+        <el-table-column sortable prop='username' label='创建者' width='220'></el-table-column>
+        <el-table-column sortable prop='summary' label='概述' width='360'></el-table-column>
         <!--<el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column> -->
         <el-table-column fixed='right' prop='button' label='操作' width='100'>
           <template slot-scope="scope">

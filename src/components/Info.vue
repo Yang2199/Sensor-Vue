@@ -46,6 +46,8 @@
         </el-row>
         <p></p>
       </div>
+      </el-card>
+      <el-card >
       <el-row type="flex" align="middle" style="height:60px;">
         <el-col :span="24" style="font-weight:bold;">
           我的方案
@@ -65,8 +67,8 @@
           label='网关型号'
           width='225'
         ></el-table-column>
-        <el-table-column sortable prop='updateTime' label='创建时间' width='200'></el-table-column>
-        <el-table-column sortable prop='summary' label='概述' width='550'></el-table-column>
+        <el-table-column sortable prop='updateTime' label='创建时间' width='240'></el-table-column>
+        <el-table-column sortable prop='summary' label='概述' width='360'></el-table-column>
         <!--<el-table-column sortable prop='updateTime' label='更新时间' width='200'></el-table-column> -->
         <el-table-column fixed='right' prop='button' label='操作' width='100'>
           <template slot-scope="scope">
